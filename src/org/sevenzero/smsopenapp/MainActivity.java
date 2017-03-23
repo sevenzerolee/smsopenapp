@@ -1,6 +1,8 @@
 package org.sevenzero.smsopenapp;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,6 +13,28 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		Intent intent = getIntent();
+		String scheme = intent.getScheme();
+		Uri uri = intent.getData();
+		System.out.println("scheme:" + scheme);
+		if (uri != null) {
+			String host = uri.getHost();
+			String dataString = intent.getDataString();
+			String id = uri.getQueryParameter("args");
+			String b = uri.getQueryParameter("a");
+			String path = uri.getPath();
+			String path1 = uri.getEncodedPath();
+			String queryString = uri.getQuery();
+			
+			System.out.println("host:" + host);
+			System.out.println("dataString:" + dataString);
+			System.out.println("id:" + id + ", b: " + b);
+			System.out.println("path:" + path);
+			System.out.println("path1:" + path1);
+			System.out.println("queryString:" + queryString);
+		}
+		
 	}
 
 	@Override
